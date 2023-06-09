@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: createInitialSetup
+      author: me
+      changes:
+        - createTable:
+            tableName: currency
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: symbol
+                  type: varchar
+                  constraints:
+                    nullable: true
+              - column:
+                  name: price
+                  type: numeric
+                  constraints:
+                    nullable: true
+              - column:
+                  name: date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+        - sql:
+            sql: create sequence if not exists currency_id_seq start 1 increment 1;
+        - createTable:
+            tableName: crypto
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: symbol
+                  type: varchar
+                  constraints:
+                    nullable: true
+        - sql:
+            sql: create sequence if not exists public.crypto_id_seq start 1 increment 1;
